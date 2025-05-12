@@ -60,6 +60,8 @@ document.getElementById("login-form").onsubmit = function(e) {
             }
         }
         setLoggedInUser(user);
+           ///PX identify////
+          aptrinsic('identify',{'id':user.id, 'email':user.email})
         location.href = "dashboard.html";
         return;
     }
@@ -72,6 +74,8 @@ document.getElementById("login-form").onsubmit = function(e) {
         return;
     }
     setLoggedInUser(user);
+            aptrinsic('identify',{'id':user.id, 'email':user.email})
+
     location.href = "dashboard.html";
 };
 </script>
