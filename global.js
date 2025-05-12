@@ -126,7 +126,7 @@ document.getElementById("gen-email").onclick = function() {
     // If you have a separate username field
      document.getElementById("login-password").value = pwd;
 
-    var usernameInp = document.getElementById("login-username");
-    if (usernameInp) usernameInp.value = gen.username;
+    //var usernameInp = document.getElementById("login-username");
+    //if (usernameInp) usernameInp.value = gen.username;
 };
 
