@@ -74,7 +74,7 @@ function navbar(active = "dashboard") {
     <nav>
       <a href="dashboard.html" ${active === "dashboard" ? "class='active'" : ""}>Restaurants</a>
       <a href="offers.html" ${active === "offers" ? "class='active'" : ""}>Offers</a>
-      <a href="https://srinivasmyk.github.io/omnifood/omni.html" target="_blank" rel="noopener" class="plus-user-link">Plus User</a>
+      <a href="https://srinivasmyk.github.io/omnifood/omni.html"  rel="noopener" class="plus-user-link">Plus User</a>
       <a href="#" onclick="logout()" style="color:#fc8019">Logout</a>
     </nav>
   </div>
