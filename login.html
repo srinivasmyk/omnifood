@@ -71,18 +71,16 @@ document.getElementById("login-form").onsubmit = function(e) {
                 return;
             }
         }
-        setLoggedInUser(user);
-        aptrinsic('identify',{'id':user.id, 'email':user.email});
-        // Smooth transition:
-        document.getElementById("login-form").style.display = "none";
-        var successMsg = document.getElementById("login-success");
-        successMsg.textContent = "Successfully logged in! Redirecting to dashboard...";
-        successMsg.style.display = "block";
-       document.getElementById("login-loading").style.display = "block"; // <-- Shows spinner
-
-        setTimeout(function() {
-            location.href = "dashboard.html";
-        }, 1500);
+        // ... after authentication success
+setLoggedInUser(user);
+aptrinsic('identify',{'id':user.id, 'email':user.email});
+document.getElementById("login-form").style.display = "none";
+document.getElementById("login-error").style.display = "none";
+document.getElementById("login-overlay").style.display = "flex";
+document.getElementById("login-success").textContent = "Successfully logged in! Redirecting to dashboard...";
+setTimeout(function() {
+    location.href = "dashboard.html";
+}, 1500);
         return;
     }
     // username login
@@ -92,18 +90,16 @@ document.getElementById("login-form").onsubmit = function(e) {
           "Invalid username/email or password!";
         return;
     }
-    setLoggedInUser(user);
-    aptrinsic('identify',{'id':user.id, 'email':user.email});
-    // Smooth transition:
-    document.getElementById("login-form").style.display = "none";
-    var successMsg = document.getElementById("login-success");
-    successMsg.textContent = "Successfully logged in! Redirecting to dashboard...";
-    successMsg.style.display = "block";
-    document.getElementById("login-loading").style.display = "block"; // <-- Shows spinner
-
-    setTimeout(function() {
-        location.href = "dashboard.html";
-    }, 1500);
+    // ... after authentication success
+setLoggedInUser(user);
+aptrinsic('identify',{'id':user.id, 'email':user.email});
+document.getElementById("login-form").style.display = "none";
+document.getElementById("login-error").style.display = "none";
+document.getElementById("login-overlay").style.display = "flex";
+document.getElementById("login-success").textContent = "Successfully logged in! Redirecting to dashboard...";
+setTimeout(function() {
+    location.href = "dashboard.html";
+}, 1500);
 };
 </script>
   <!-- in your login.html -->
