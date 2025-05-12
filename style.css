@@ -404,3 +404,21 @@ button:hover, .btn:hover {
     }
     .navbar { flex-direction: column; padding: 3vw; height: 102px;}
 }
+
+.plus-user-link {
+    color: var(--primary) !important;
+    font-weight: 700;
+    background: #fff7ef;
+    border-radius: 6px;
+    transition: background .2s, color .18s;
+    padding: 7px 14px;
+}
+.plus-user-link:visited {
+    color: var(--primary);
+}
+.plus-user-link:hover,
+.plus-user-link:focus {
+    background: #ffefd7;
+    color: #d96a16;
+    text-decoration: none;
+}
