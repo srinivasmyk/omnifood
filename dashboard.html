@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Foodie Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="global.js"></script>
+<script>
+checkAuthRedirect();
+const user = getLoggedInUser();
+document.getElementById("app").innerHTML = `
+  ${navbar("dashboard")}
+  <div class="dashboard-container">
+    <div class="section-header"><h2>Available Restaurants</h2></div>
+    <div class="restaurant-list">
+      ${RESTAURANTS.map(r=>`
+      <div class="restaurant-card" data-id="${r.id}" tabindex="0" onclick="location.href='restaurant.html?id=${r.id}'">
+        <img src="${r.img}" alt="${r.name}">
+        <div class="restaurant-info">
+          <h3>${r.name}</h3>
+          <span class="cuisine">${r.cuisine}</span>
+          <div class="rating"><span class="star">★</span> ${r.rating}</div>
+        </div>
+      </div>`).join('')}
+    </div>
+  </div>
+`;
+</script>
+</body>
+</html>
