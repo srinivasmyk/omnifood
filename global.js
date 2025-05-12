@@ -14,10 +14,10 @@ function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-const USERS = [
-  { id: 1, name: "Amit Roy", email: "amit@example.com", username: "amit", password: "demo123", phone: "9876543210", address: "Kolkata" },
-  { id: 2, name: "Priya Sharma", email: "priya@example.com", username: "priya", password: "demo456", phone: "9993322211", address: "Delhi" }
-];
+// const USERS = [
+//   { id: 1, name: "Amit Roy", email: "amit@example.com", username: "amit", password: "demo123", phone: "9876543210", address: "Kolkata" },
+//   { id: 2, name: "Priya Sharma", email: "priya@example.com", username: "priya", password: "demo456", phone: "9993322211", address: "Delhi" }
+// ];
 const RESTAURANTS = [
   {
     id: 101, name: "Pizza Hub", cuisine: "Pizza, Italian", rating: 4.4,
