@@ -65,3 +65,19 @@ function navbar(active = "dashboard") {
   </div>
   `;
 }
+// LocalStorage-backed USERS for persisting signup users
+function getUSERS() {
+    return JSON.parse(localStorage.getItem("FOODIE_USERS") || "null") || [
+      { id: 1, name: "Amit Roy", email: "amit@example.com", username: "amit", password: "demo123", phone: "9876543210", address: "Kolkata" },
+      { id: 2, name: "Priya Sharma", email: "priya@example.com", username: "priya", password: "demo456", phone: "9993322211", address: "Delhi" }
+    ]; // default demo users
+}
+
+function saveUSERS(arr) {
+    localStorage.setItem("FOODIE_USERS", JSON.stringify(arr));
+}
+let USERS = getUSERS(); // always use this variable in login logic
+
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
