@@ -119,7 +119,8 @@ function generateRandomPassword() {
     return pw;
 }
 
-document.getElementById("gen-email").onclick = function() {
+document.addEventListener("DOMContentLoaded", function(){
+   document.getElementById("gen-email").onclick = function() {
     var gen = generateRandomEmailAndUsername();
      var pwd= generateRandomPassword();
     document.getElementById("login-email").value = gen.email;
@@ -129,4 +130,6 @@ document.getElementById("gen-email").onclick = function() {
     var usernameInp = document.getElementById("login-username");
     if (usernameInp) usernameInp.value = gen.username;
 };
+
+});
 
