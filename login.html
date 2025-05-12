@@ -1,115 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Foodie Login</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="global.js"></script>
-
-</head>
-<body>
-<div id="app">
-
-  <form id="login-form" class="login-container" autocomplete="off">
-    <h2>Login</h2>
-    <div id="login-error" class="login-error"></div>
-    <label>Email or Username</label>
-    <input id="login-email" type="text" name="login" required placeholder="Enter Email or Username" autofocus autocomplete="username">
-    <label>Password</label>
-    <input type="password" id="login-password" name="password" required placeholder="Password" autocomplete="current-password">
-    <button type="submit">Login</button>
-    <div style="font-size:0.98em;color:#666;margin-top:22px;">
-      <strong>Demo Users:</strong><br>
-      <b>amit</b> / amit@example.com – demo123 <br>
-      <b>priya</b> / priya@example.com – demo456
-    </div>
-   
-  <button id="gen-email" type="button" style="margin-left:auto;font-size:0.93em;padding:4px 14px;background:#fc8019;color:#fff;border-radius:5px;border:none;cursor:pointer;">Gen</button>
-
-
-</div>
-  </form>
-   <div id="login-overlay" class='login-overlay' style="display:none"> 
-  <div class="login-overlay-content">
-    <div id="login-success" class="login-success-popup"
-         style="color:var(--primary);font-weight:600;font-size:1.2em;text-align:center;">
-       Successfully logged in! Redirecting to dashboard...
-    </div>
-    <div class="spinner"></div>
-  </div>
-</div>
-</div>
-<script>
-document.getElementById("login-form").onsubmit = function(e) {
-    e.preventDefault();
-    USERS = getUSERS(); // refresh from localStorage in case other tabs updated it
-    const login = this.login.value.trim();
-    const pass = this.password.value;
-    if (isValidEmail(login)) {
-        // email login: is it in USERS?
-        let user = USERS.find(u => u.email === login);
-        if (!user) {
-            // Register new user
-            if (!pass) {
-                document.getElementById("login-error").textContent =
-                  "Please enter a password to register with email.";
-                return;
-            }
-            user = {
-                id: Date.now(),
-                name: login.split("@")[0],
-                email: login,
-                username: login.split("@")[0],
-                password: pass,
-                phone: "",
-                address: ""
-            };
-            USERS.push(user);
-            saveUSERS(USERS);
-        } else {
-            // Authenticate existing user by password
-            if (user.password !== pass) {
-                document.getElementById("login-error").textContent =
-                  "Incorrect password for this email.";
-                return;
-            }
-        }
-        // ... after authentication success
-setLoggedInUser(user);
-aptrinsic('identify',{'id':user.id, 'email':user.email});
-document.getElementById("login-form").style.display = "none";
-document.getElementById("login-error").style.display = "none";
-document.getElementById("login-overlay").style.display = "flex";
-document.getElementById("login-success").textContent = "Successfully logged in! Redirecting to dashboard...";
-setTimeout(function() {
-    location.href = "dashboard.html";
-}, 1500);
-        return;
-    }
-    // username login
-    const user = USERS.find(u => u.username === login && u.password === pass);
-    if (!user) {
-        document.getElementById("login-error").textContent =
-          "Invalid username/email or password!";
-        return;
-    }
-    // ... after authentication success
-setLoggedInUser(user);
-aptrinsic('identify',{'id':user.id, 'email':user.email});
-document.getElementById("login-form").style.display = "none";
-document.getElementById("login-error").style.display = "none";
-document.getElementById("login-overlay").style.display = "flex";
-document.getElementById("login-success").textContent = "Successfully logged in! Redirecting to dashboard...";
-setTimeout(function() {
-    location.href = "dashboard.html";
-}, 1500);
-};
-</script>
-  <!-- in your login.html -->
-<!--</body>
-</html>
- -->
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -158,14 +46,27 @@ setTimeout(function() {
 <script>
 // --- GEN RANDOM EMAIL, USERNAME, PASSWORD --
 function generateRandomEmailAndUsername() {
-    const names = [
-        "alex", "priya", "rohit", "elena", "lee", "daniel",
-        "fatima", "hiro", "vinay", "lucia", "chen", "john", "amina", "diego"
-    ];
-    const companies = [
-        "airbnb", "swiggy", "amazon", "flipkart", "zomato", "microsoft", "google",
-        "paytm", "infosys", "stripe", "wipro", "ola", "uber", "zoom", "byjus", "cred"
-    ];
+   const names = [
+    "alex", "priya", "rohit", "elena", "lee", "daniel",
+    "fatima", "hiro", "vinay", "lucia", "chen", "john", "amina", "diego",
+    "emma", "oliver", "ava", "liam", "noah", "emma", "mason", "mia", "ethan", "isabella",
+    "harper", "logan", "sophia", "aiden", "olivia", "lucas", "arjun", "arya", "kabir", "reya",
+    "nina", "sofia", "leo", "mila", "zara", "maya", "josh", "steve", "kate", "shreya", "saanvi",
+    "aman", "anaya", "arthur", "jasper", "sarah", "chloe", "felix", "lily", "giulia", "meera",
+    "vivek", "sonia", "arie", "ivy", "rohan", "aarav", "anika", "ria", "jay", "aaron", "tina",
+    "aditya", "neha", "sid", "kiara", "rhea", "ali", "michelle", "sean", "peter", "mehul", "ira",
+    "anish", "balaji", "simran", "dev", "charlie", "olga", "george", "eva", "wilson", "juliet",
+    "esther", "hannah", "oliver", "elijah", "ayush", "krish", "namita", "tarun", "rashmi", "arya"
+];
+   const companies = [
+    "airbnb", "swiggy", "amazon", "flipkart", "zomato", "microsoft", "google", "paytm", "infosys", "stripe", "wipro", "ola", "uber", "zoom", "byjus", "cred",
+    "freshworks", "spotify", "netflix", "linkedin", "meta", "twitter", "apple", "oracle", "ibm", "hcl", "accenture", "tesla", "samsung", "facebook", "adobe", "intuit",
+    "hike", "meesho", "slack", "dropbox", "box", "asana", "instacart", "tiktok", "paypal", "visa", "mastercard", "bajajfinserv", "groww", "phonepe", "navi", "expedia",
+    "makemytrip", "cleartrip", "redbus", "delhivery", "postman", "razorpay", "nykaa", "bigbasket", "blinkit", "swiggy", "xpressbees", "policybazaar", "ekart",
+    "urbanclap", "urbancompany", "snapdeal", "shopclues", "pepperfry", "firstcry", "boat", "dunzo", "grofers", "jugnoo", "bounce", "turtlemint", "chargbee",
+    "mobikwik", "pinterest", "github", "gitlab", "dribbble", "behance", "canva", "quora", "coursera", "udemy", "edx", "whitehatjr", "udacity", "olx", "yahoo", "trivago",
+    "oneplus", "dell", "hp", "lenovo", "cisco", "siemens", "verizon", "atlassian", "zoho", "tcs", "redhat", "intel"
+];
     const domains = ["com", "in", "net", "co"];
     function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
     const base = pick(names);
