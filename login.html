@@ -26,10 +26,15 @@
      
 </div>
   </form>
-   <div id="login-success" class="login-success-popup" style="display:none;color:var(--primary);font-weight:600;font-size:1.2em; margin-top:18px;text-align:center">Welcome!</div>
-
-    <div id="login-loading" style="display:none; margin-top:25px; text-align:center;">
-  <div class="spinner"></div>
+   <div id="login-overlay" style="display:none">
+  <div class="login-overlay-content">
+    <div id="login-success" class="login-success-popup"
+         style="color:var(--primary);font-weight:600;font-size:1.2em;text-align:center;">
+       Successfully logged in! Redirecting to dashboard...
+    </div>
+    <div class="spinner"></div>
+  </div>
+</div>
 </div>
 <script>
 document.getElementById("login-form").onsubmit = function(e) {
