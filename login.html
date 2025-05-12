@@ -111,7 +111,7 @@ document.getElementById("login-form").onsubmit = function(e) {
                 return;
             }
             user = {
-                id: Date.now(),
+                id: generateRandomId(),
                 name: username,
                 email: login,
                 username: username,
