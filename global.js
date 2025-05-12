@@ -52,14 +52,15 @@ function checkAuthRedirect() {
 function logout() {
   setLoggedInUser(null); location.href = "login.html";
 }
-function navbar(active="dashboard") {
+function navbar(active = "dashboard") {
   return `
   <div class="navbar">
     <h1 style="cursor:pointer" onclick="location.href='dashboard.html'">🍽 Foodie</h1>
     <nav>
-      <a href="dashboard.html" ${active==="dashboard"?"class='active'":""}>Restaurants</a>
-      <a href="offers.html" ${active==="offers"?"class='active'":""}>Offers</a>
-      <a href="#" onclick="logout()" style="color:#ff6a00">Logout</a>
+      <a href="dashboard.html" ${active === "dashboard" ? "class='active'" : ""}>Restaurants</a>
+      <a href="offers.html" ${active === "offers" ? "class='active'" : ""}>Offers</a>
+      <a href="https://srinivasmyk.github.io/omnifood/omni.html" target="_blank" rel="noopener" class="plus-user-link">Plus User</a>
+      <a href="#" onclick="logout()" style="color:#fc8019">Logout</a>
     </nav>
   </div>
   `;
