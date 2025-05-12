@@ -24,18 +24,58 @@
 </div>
 <script src="global.js"></script>
 <script>
-if(getLoggedInUser()) location.href='dashboard.html';
 document.getElementById("login-form").onsubmit = function(e) {
-  e.preventDefault();
-  const login = this.login.value.trim(), pass = this.password.value.trim();
-  let user = USERS.find(u=>(u.username===login || u.email===login) && u.password===pass);
-  if(!user) {
-    document.getElementById("login-error").textContent="Invalid username/email or password!";
-    return;
-  }
-  setLoggedInUser(user);
-  location.href = "dashboard.html";
+    e.preventDefault();
+    USERS = getUSERS(); // refresh from localStorage in case other tabs updated it
+    const login = this.login.value.trim();
+    const pass = this.password.value;
+
+    if (isValidEmail(login)) {
+        // email login: is it in USERS?
+        let user = USERS.find(u => u.email === login);
+        if (!user) {
+            // Register new user
+            if (!pass) {
+                document.getElementById("login-error").textContent =
+                  "Please enter a password to register with email.";
+                return;
+            }
+            user = {
+                id: Date.now(),
+                name: login.split("@")[0],
+                email: login,
+                username: login.split("@")[0],
+                password: pass,
+                phone: "",
+                address: ""
+            };
+            USERS.push(user);
+            saveUSERS(USERS);
+        } else {
+            // Authenticate existing user by password
+            if (user.password !== pass) {
+                document.getElementById("login-error").textContent =
+                  "Incorrect password for this email.";
+                return;
+            }
+        }
+        setLoggedInUser(user);
+        location.href = "dashboard.html";
+        return;
+    }
+
+    // username login
+    const user = USERS.find(u => u.username === login && u.password === pass);
+    if (!user) {
+        document.getElementById("login-error").textContent =
+          "Invalid username/email or password!";
+        return;
+    }
+    setLoggedInUser(user);
+    location.href = "dashboard.html";
 };
+
+  
 </script>
 </body>
 </html>
