@@ -90,5 +90,9 @@ function navbar(active = "dashboard") {
   </div>
   `;
 }
-// LocalStorage-backed USERS for persisting signup users
-// LocalStorage-backed USERS for persisting signup users
+
+document.getElementById("login-success").textContent = "Successfully logged in! Redirecting to dashboard...";
+document.getElementById("login-success").style.display = "block";
+setTimeout(function() {
+  location.href = "dashboard.html";
+}, 1500); // or 2000 for 2s
