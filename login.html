@@ -4,9 +4,13 @@
   <meta charset="UTF-8">
   <title>Foodie Login</title>
   <link rel="stylesheet" href="style.css">
+  <script src="global.js"></script>
+
 </head>
 <body>
 <div id="app">
+  <div id="login-success" class="login-success-popup" style="display:none;color:var(--primary);font-weight:600;font-size:1.2em; margin-top:18px;text-align:center"></div>
+
   <form id="login-form" class="login-container" autocomplete="off">
     <h2>Login</h2>
     <div id="login-error" class="login-error"></div>
@@ -80,7 +84,5 @@ document.getElementById("login-form").onsubmit = function(e) {
 };
 </script>
   <!-- in your login.html -->
-<div id="login-success" class="login-success-popup" style="display:none;color:var(--primary);font-weight:600;font-size:1.2em; margin-top:18px;text-align:center"></div>
-<script src="global.js"></script>
 </body>
 </html>
