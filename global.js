@@ -1,3 +1,13 @@
+
+     ///PX tag////
+
+(function(n,t,a,e,co){var i="aptrinsic";n[i]=n[i]||function(){
+        (n[i].q=n[i].q||[]).push(arguments)},n[i].p=e;n[i].c=co;
+      var r=t.createElement("script");r.async=!0,r.src=a+"?a="+e;
+      var c=t.getElementsByTagName("script")[0];c.parentNode.insertBefore(r,c)
+    })(window,document,"https://web-sdk.aptrinsic.com/api/aptrinsic.js","AP-KBGIQSQYV18C-2");
+     ///PX tag////
+
 // ----- DEMO USERS, RESTAURANTS, OFFERS -----
 function getUSERS() {
     return JSON.parse(localStorage.getItem("FOODIE_USERS") || "null") || [
