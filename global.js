@@ -91,3 +91,31 @@ function navbar(active = "dashboard") {
   `;
 }
 
+
+function generateRandomEmailAndUsername() {
+    const names = [
+        "alex", "priya", "rohit", "elena", "lee", "daniel", 
+        "fatima", "hiro", "vinay", "lucia", "chen", "john", "amina", "diego"
+    ];
+    const companies = [
+        "airbnb", "swiggy", "amazon", "flipkart", "zomato", "microsoft", "google",
+        "paytm", "infosys", "stripe", "wipro", "ola", "uber", "zoom", "byjus", "cred"
+    ];
+    const domains = ["com", "in", "net", "co"];
+    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+    const base = pick(names);
+    const name = base + (Math.random() < 0.4 ? (Math.floor(Math.random() * 90) + 10) : "");
+    const company = pick(companies);
+    const domain = pick(domains);
+    const email = `${name}@${company}.${domain}`;
+    return { email, username: name };
+}
+
+document.getElementById("gen-email").onclick = function() {
+    var gen = generateRandomEmailAndUsername();
+    document.getElementById("login-email").value = gen.email;
+    // If you have a separate username field:
+    var usernameInp = document.getElementById("login-username");
+    if (usernameInp) usernameInp.value = gen.username;
+};
+
