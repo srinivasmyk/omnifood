@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Offers</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="global.js"></script>
+<script>
+checkAuthRedirect();
+document.getElementById("app").innerHTML = `
+  ${navbar("offers")}
+  <div class="offers-container">
+    <div class="offers-header">Offers Near You</div>
+    <div class="offers-list">
+      ${OFFERS.map(offer=>`
+        <div class="offer-card">
+          <div class="offer-title">${offer.title}</div>
+          <div class="offer-desc">${offer.description}</div>
+          <div class="offer-code">Code: ${offer.code}</div>
+          <div class="offer-validity">${offer.validity||""}</div>
+        </div>
+      `).join('')}
+    </div>
+  </div>
+`;
+</script>
+</body>
+</html>
