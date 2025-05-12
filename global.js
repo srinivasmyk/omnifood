@@ -111,10 +111,21 @@ function generateRandomEmailAndUsername() {
     return { email, username: name };
 }
 
+function generateRandomPassword() {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#%&";
+    const n = Math.floor(Math.random()*5)+8; // 8-12 chars
+    let pw = "";
+    for(let i=0;i<n;++i) pw += chars[Math.floor(Math.random()*chars.length)];
+    return pw;
+}
+
 document.getElementById("gen-email").onclick = function() {
     var gen = generateRandomEmailAndUsername();
+     var pwd= generateRandomPassword();
     document.getElementById("login-email").value = gen.email;
     // If you have a separate username field:
+         document.getElementById("login-password").value = pwd;
+
     var usernameInp = document.getElementById("login-username");
     if (usernameInp) usernameInp.value = gen.username;
 };
