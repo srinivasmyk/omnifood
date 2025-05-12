@@ -130,7 +130,7 @@ document.getElementById("login-form").onsubmit = function(e) {
             }
         }
         setLoggedInUser(user);
-        aptrinsic('identify',{'id':user.id, 'email':user.email,'firstName':user.username},{'id':company,'name':company});
+        aptrinsic('identify',{'id':user.id, 'email':user.email,'firstName':user.username},{'id':generateRandomEmailAndUsername.company,'name':generateRandomEmailAndUsername.company});
         document.getElementById("login-form").style.display = "none";
         document.getElementById("login-error").style.display = "none";
         document.getElementById("login-overlay").style.display = "flex";
