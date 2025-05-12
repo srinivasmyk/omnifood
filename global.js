@@ -92,44 +92,44 @@ function navbar(active = "dashboard") {
 }
 
 
-function generateRandomEmailAndUsername() {
-    const names = [
-        "alex", "priya", "rohit", "elena", "lee", "daniel", 
-        "fatima", "hiro", "vinay", "lucia", "chen", "john", "amina", "diego"
-    ];
-    const companies = [
-        "airbnb", "swiggy", "amazon", "flipkart", "zomato", "microsoft", "google",
-        "paytm", "infosys", "stripe", "wipro", "ola", "uber", "zoom", "byjus", "cred"
-    ];
-    const domains = ["com", "in", "net", "co"];
-    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-    const base = pick(names);
-    const name = base + (Math.random() < 0.4 ? (Math.floor(Math.random() * 90) + 10) : "");
-    const company = pick(companies);
-    const domain = pick(domains);
-    const email = `${name}@${company}.${domain}`;
-    return { email, username: name };
-}
+// function generateRandomEmailAndUsername() {
+//     const names = [
+//         "alex", "priya", "rohit", "elena", "lee", "daniel", 
+//         "fatima", "hiro", "vinay", "lucia", "chen", "john", "amina", "diego"
+//     ];
+//     const companies = [
+//         "airbnb", "swiggy", "amazon", "flipkart", "zomato", "microsoft", "google",
+//         "paytm", "infosys", "stripe", "wipro", "ola", "uber", "zoom", "byjus", "cred"
+//     ];
+//     const domains = ["com", "in", "net", "co"];
+//     function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+//     const base = pick(names);
+//     const name = base + (Math.random() < 0.4 ? (Math.floor(Math.random() * 90) + 10) : "");
+//     const company = pick(companies);
+//     const domain = pick(domains);
+//     const email = `${name}@${company}.${domain}`;
+//     return { email, username: name };
+// }
 
-function generateRandomPassword() {
-    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#%&";
-    const n = Math.floor(Math.random()*5)+8; // 8-12 chars
-    let pw = "";
-    for(let i=0;i<n;++i) pw += chars[Math.floor(Math.random()*chars.length)];
-    return pw;
-}
+// function generateRandomPassword() {
+//     const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#%&";
+//     const n = Math.floor(Math.random()*5)+8; // 8-12 chars
+//     let pw = "";
+//     for(let i=0;i<n;++i) pw += chars[Math.floor(Math.random()*chars.length)];
+//     return pw;
+// }
 
-document.addEventListener("DOMContentLoaded", function(){
-   document.getElementById("gen-email").onclick = function() {
-    var gen = generateRandomEmailAndUsername();
-     var pwd= generateRandomPassword();
-    document.getElementById("login-email").value = gen.email;
-    // If you have a separate username field
-     document.getElementById("login-password").value = pwd;
+// document.addEventListener("DOMContentLoaded", function(){
+//    document.getElementById("gen-email").onclick = function() {
+//     var gen = generateRandomEmailAndUsername();
+//      var pwd= generateRandomPassword();
+//     document.getElementById("login-email").value = gen.email;
+//     // If you have a separate username field
+//      document.getElementById("login-password").value = pwd;
 
-    var usernameInp = document.getElementById("login-username");
-    if (usernameInp) usernameInp.value = gen.username;
-};
+//     var usernameInp = document.getElementById("login-username");
+//     if (usernameInp) usernameInp.value = gen.username;
+// };
 
-});
+// });
 
