@@ -96,3 +96,4 @@ document.getElementById("login-success").style.display = "block";
 setTimeout(function() {
   location.href = "dashboard.html";
 }, 1500); // or 2000 for 2s
+document.getElementById("login-form").style.display = "none";
