@@ -437,3 +437,41 @@ button:hover, .btn:hover {
 @keyframes spin {
   100% { transform: rotate(360deg); }
 }
+
+#login-overlay {
+    position: fixed;
+    z-index: 2000;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: rgba(255,255,255,0.88);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+.login-overlay-content {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 6px 42px 2px #e5953e1a;
+    padding: 40px 52px 34px;
+    text-align: center;
+    min-width: 240px;
+}
+.login-success-popup {
+    margin-bottom: 24px;
+    color: var(--primary);
+    font-size: 1.25em;
+    letter-spacing: .5px;
+    font-weight: bold;
+}
+.spinner {
+    width: 44px;
+    height: 44px;
+    border: 5px solid #ffe2c6;
+    border-top: 5px solid #fc8019;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin: 0 auto;
+    display: inline-block;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
