@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -106,5 +106,156 @@ setTimeout(function() {
 };
 </script>
   <!-- in your login.html -->
+<!--</body>
+</html>
+ -->
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Foodie Login</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="global.js"></script>
+</head>
+<body>
+<div id="app">
+  <form id="login-form" class="login-container" autocomplete="off">
+    <h2>Login</h2>
+    <div id="login-error" class="login-error"></div>
+    <!-- Email + Gen in a flex row -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+        <label for="login-email" style="margin-bottom:0;">Email</label>
+        <button id="gen-email" type="button"
+            style="margin-left:auto;font-size:0.93em;padding:4px 14px;background:#fc8019;color:#fff;border-radius:5px;border:none;cursor:pointer;">
+            Gen
+        </button>
+    </div>
+    <input id="login-email" type="text" name="login" required placeholder="Enter Email" autocomplete="username">
+    <!-- Optional: Username field -->
+    <label for="login-username">Username</label>
+    <input id="login-username" type="text" name="username" placeholder="Enter Username">
+    <label>Password</label>
+    <input type="password" id="login-password" name="password" required placeholder="Password" autocomplete="current-password">
+    <button type="submit">Login</button>
+    <div style="font-size:0.98em;color:#666;margin-top:22px;">
+      <strong>Demo Users:</strong><br>
+      <b>amit</b> / amit@example.com – demo123 <br>
+      <b>priya</b> / priya@example.com – demo456
+    </div>
+  </form>
+  <div id="login-overlay" class='login-overlay' style="display:none">
+    <div class="login-overlay-content">
+      <div id="login-success" class="login-success-popup"
+          style="color:var(--primary);font-weight:600;font-size:1.2em;text-align:center;">
+          Successfully logged in! Redirecting to dashboard...
+      </div>
+      <div class="spinner"></div>
+    </div>
+  </div>
+</div>
+<script>
+// --- GEN RANDOM EMAIL, USERNAME, PASSWORD ---
+function generateRandomEmailAndUsername() {
+    const names = [
+        "alex", "priya", "rohit", "elena", "lee", "daniel",
+        "fatima", "hiro", "vinay", "lucia", "chen", "john", "amina", "diego"
+    ];
+    const companies = [
+        "airbnb", "swiggy", "amazon", "flipkart", "zomato", "microsoft", "google",
+        "paytm", "infosys", "stripe", "wipro", "ola", "uber", "zoom", "byjus", "cred"
+    ];
+    const domains = ["com", "in", "net", "co"];
+    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+    const base = pick(names);
+    const name = base + (Math.random() < 0.4 ? (Math.floor(Math.random() * 90) + 10) : "");
+    const company = pick(companies);
+    const domain = pick(domains);
+    const email = `${name}@${company}.${domain}`;
+    return { email, username: name };
+}
+
+function generateRandomPassword() {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#%&";
+    const n = Math.floor(Math.random()*5)+8; // 8-12 chars
+    let pw = "";
+    for(let i=0;i<n;++i) pw += chars[Math.floor(Math.random()*chars.length)];
+    return pw;
+}
+
+document.getElementById("gen-email").onclick = function() {
+    var gen = generateRandomEmailAndUsername();
+    document.getElementById("login-email").value = gen.email;
+    document.getElementById("login-username").value = gen.username;
+    document.getElementById("login-password").value = generateRandomPassword();
+};
+
+// LOGIN HANDLER (Works with or without username input)
+document.getElementById("login-form").onsubmit = function(e) {
+    e.preventDefault();
+    USERS = getUSERS(); // refresh from localStorage in case other tabs updated it
+    const login = document.getElementById("login-email").value.trim();
+    const pass = document.getElementById("login-password").value;
+    // If using username as separate field:
+    const username = document.getElementById("login-username").value.trim() || login.split("@")[0];
+    if (isValidEmail(login)) {
+        // email login: is it in USERS?
+        let user = USERS.find(u => u.email === login);
+        if (!user) {
+            // Register new user
+            if (!pass) {
+                document.getElementById("login-error").textContent =
+                  "Please enter a password to register with email.";
+                return;
+            }
+            user = {
+                id: Date.now(),
+                name: username,
+                email: login,
+                username: username,
+                password: pass,
+                phone: "",
+                address: ""
+            };
+            USERS.push(user);
+            saveUSERS(USERS);
+        } else {
+            // Authenticate existing user by password
+            if (user.password !== pass) {
+                document.getElementById("login-error").textContent =
+                  "Incorrect password for this email.";
+                return;
+            }
+        }
+        setLoggedInUser(user);
+        aptrinsic('identify',{'id':user.id, 'email':user.email});
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("login-error").style.display = "none";
+        document.getElementById("login-overlay").style.display = "flex";
+        document.getElementById("login-success").textContent = "Successfully logged in! Redirecting to dashboard...";
+        setTimeout(function() {
+            location.href = "dashboard.html";
+        }, 1500);
+        return;
+    }
+    // username login
+    const user = USERS.find(u => u.username === login && u.password === pass);
+    if (!user) {
+        document.getElementById("login-error").textContent =
+          "Invalid username/email or password!";
+        return;
+    }
+    setLoggedInUser(user);
+    aptrinsic('identify',{'id':user.id, 'email':user.email});
+    document.getElementById("login-form").style.display = "none";
+    document.getElementById("login-error").style.display = "none";
+    document.getElementById("login-overlay").style.display = "flex";
+    document.getElementById("login-success").textContent = "Successfully logged in! Redirecting to dashboard...";
+    setTimeout(function() {
+        location.href = "dashboard.html";
+    }, 1500);
+};
+</script>
 </body>
 </html>
