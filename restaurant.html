@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Restaurant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="global.js"></script>
+<script>
+checkAuthRedirect();
+// Read id param from URL (restaurant id)
+const params = new URLSearchParams(location.search);
+const restId = Number(params.get("id"));
+const rest = RESTAURANTS.find(r=>r.id===restId);
+if(!rest) { location.href="dashboard.html"; }
+
+function placeOrder(item) {
+  let orders = getOrders();
+  const user = getLoggedInUser();
+  const o = {
+    id:Date.now().toString(36), restaurant:{id:rest.id,name:rest.name},
+    items:[item], price:item.price, date:Date.now()
+  };
+  if(!orders[user.id]) orders[user.id]=[];
+  orders[user.id].push(o);
+  saveOrders(orders);
+  alert(`Order placed for ${item.name}!\nCheck Order History (not shown in this demo)`);
+}
+
+document.getElementById("app").innerHTML = `
+  ${navbar()}
+  <div class="menu-container">
+    <div class="menu-header">
+      <div class="restaurant-meta">
+        <h2>${rest.name}</h2>
+        <div class="cuisine">Cuisine: ${rest.cuisine}</div>
+        <div class="rating"><span class="star">★</span> ${rest.rating}</div>
+      </div>
+      <img src="${rest.img}" alt="${rest.name}">
+    </div>
+    <h3 style="margin-top:24px;margin-bottom:7px;">Menu</h3>
+    <div class="menu-items">
+      ${rest.menu.map(item=>`
+        <div class="menu-item">
+          <div class="item-info">
+            <span class="item-name">${item.name}</span>
+            <span class="item-desc">${item.desc}</span>
+            <span class="item-price">₹${item.price}</span>
+          </div>
+          <button class="order-btn" onclick='placeOrder(${JSON.stringify(item)})'>Order</button>
+        </div>
+      `).join('')}
+    </div>
+    <button style="margin-top:33px;background:#eee;color:#444;font-size:0.99em;border-radius:8px;padding:8px 17px;border:none;cursor:pointer;" onclick="location.href='dashboard.html'">← Back to Restaurants</button>
+  </div>
+`;
+</script>
+</body>
+</html>
