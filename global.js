@@ -8,7 +8,7 @@
     })(window,document,"https://web-sdk.aptrinsic.com/api/aptrinsic.js","AP-YBQEEASGFCZP-2");
      ///PX tag////
 
-// ----- DEMO USERS, RESTAURANTS, OFFERS -----
+// ----- DEMO USERS, RESTAURANTS, OFFERS ---
 function getUSERS() {
     return JSON.parse(localStorage.getItem("FOODIE_USERS") || "null") || [
       { id: 1, name: "Amit Roy", email: "amit@example.com", username: "amit", password: "demo123", phone: "9876543210", address: "Kolkata" },
