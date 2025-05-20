@@ -99,6 +99,11 @@ document.getElementById("login-form").onsubmit = function(e) {
     const login = document.getElementById("login-email").value.trim();
     const pass = document.getElementById("login-password").value;
     // If using username as separate field:
+  // Get viewport size
+const viewportWidth = window.innerWidth;
+const viewportHeight = window.innerHeight;
+
+console.log(`Viewport size: ${viewportWidth} x ${viewportHeight}`);
     const username = document.getElementById("login-username").value.trim() || login.split("@")[0];
     if (isValidEmail(login)) {
         // email login: is it in USERS?
@@ -130,7 +135,7 @@ document.getElementById("login-form").onsubmit = function(e) {
             }
         }
         setLoggedInUser(user);
-        aptrinsic('identify',{'id':user.id, 'email':user.email,'firstName':user.username},{'id':generateRandomEmailAndUsername.company,'name':generateRandomEmailAndUsername.company});
+        aptrinsic('identify',{'id':user.id, 'email':user.email,'firstName':user.username,'userViewPortSize':'`${viewportWidth} x ${viewportHeight}`'},{'id':generateRandomEmailAndUsername.company,'name':generateRandomEmailAndUsername.company});
         document.getElementById("login-form").style.display = "none";
         document.getElementById("login-error").style.display = "none";
         document.getElementById("login-overlay").style.display = "flex";
