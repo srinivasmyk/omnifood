@@ -29,5 +29,126 @@ document.getElementById("app").innerHTML = `
   </div>
 `;
 </script>
+
+  <button id="openHelpModalBtn" class="help-float-btn">HELP</button>
+
+  <!-- Ticket Modal -->
+  <div id="ticketModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModalBtn">&times;</span>
+      <h2>Submit a Ticket</h2>
+      <form id="ticketForm" autocomplete="off">
+        <div class="form-group">
+          <label for="title">Issue Title</label>
+          <input type="text" id="title" name="title" required maxlength="100">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" required maxlength="500"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Screenshot
+            <button id="showScreenshotArea" type="button" class="btn btn-small">Attach Screenshot</button>
+          </label>
+          <div id="screenshotArea">
+            <input type="file" id="screenshotInput" accept="image/*" style="display:none;">
+            <span id="dragText">Drag & drop an image or <u>browse</u></span>
+            <img id="imagePreview" class="hidden" />
+            <button id="removeImgBtn" type="button" class="btn btn-small cancel hidden" style="margin-top:6px;">Remove</button>
+          </div>
+        </div>
+        <div style="margin-top:16px; text-align:center;">
+          <button type="button" class="btn cancel" id="cancelFormBtn">Cancel</button>
+          <button type="submit" class="btn primary">Submit</button>
+        </div>
+        <div id="emailStatus"></div>
+      </form>
+    </div>
+  </div>
+  <script>
+  const openHelpModalBtn = document.getElementById('openHelpModalBtn'),
+        ticketModal = document.getElementById('ticketModal'),
+        closeModalBtn = document.getElementById('closeModalBtn'),
+        cancelFormBtn = document.getElementById('cancelFormBtn');
+
+  function showModal() {
+    ticketModal.classList.add('show');
+    openHelpModalBtn.classList.add('hide');
+  }
+  function hideModal() {
+    ticketModal.classList.remove('show');
+    openHelpModalBtn.classList.remove('hide');
+    document.getElementById('ticketForm').reset();
+    document.getElementById('screenshotArea').style.display = 'none';
+    clearImage();
+    document.getElementById('emailStatus').textContent = '';
+  }
+  openHelpModalBtn.onclick = showModal;
+  closeModalBtn.onclick = cancelFormBtn.onclick = hideModal;
+  window.onclick = function(event) {
+    if (event.target == ticketModal) hideModal();
+  };
+
+  // Screenshot area logic
+  const showScreenshotAreaBtn = document.getElementById('showScreenshotArea');
+  const screenshotArea = document.getElementById('screenshotArea');
+  const screenshotInput = document.getElementById('screenshotInput');
+  const imagePreview = document.getElementById('imagePreview');
+  const removeImgBtn = document.getElementById('removeImgBtn');
+  const dragText = document.getElementById('dragText');
+  let screenshotBase64 = "";
+
+  showScreenshotAreaBtn.onclick = function(e) {
+    screenshotArea.style.display = 'block';
+    e.preventDefault();
+  };
+  screenshotArea.onclick = function(e) {
+    if (e.target.tagName !== 'BUTTON' && !imagePreview.src) {
+      screenshotInput.click();
+    }
+  };
+  screenshotInput.onchange = function(e) {
+    handleFiles(this.files);
+  };
+  screenshotArea.ondragover = function(e){ e.preventDefault(); screenshotArea.style.background="#e2e7ff"; }
+  screenshotArea.ondragleave = function(e){ e.preventDefault(); screenshotArea.style.background="#f7f7f7"; }
+  screenshotArea.ondrop = function(e){
+    e.preventDefault(); screenshotArea.style.background="#f7f7f7";
+    handleFiles(e.dataTransfer.files);
+  };
+  function handleFiles(files) {
+    if (files.length && files[0].type.startsWith('image/')) {
+      let file = files[0];
+      let reader = new FileReader();
+      reader.onload = function(e) {
+        imagePreview.src = e.target.result;
+        screenshotBase64 = e.target.result;
+        imagePreview.classList.remove('hidden');
+        dragText.classList.add('hidden');
+        removeImgBtn.classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  removeImgBtn.onclick = function(e){
+    e.preventDefault();
+    clearImage();
+  }
+  function clearImage() {
+    imagePreview.src = "";
+    screenshotBase64 = "";
+    imagePreview.classList.add('hidden');
+    dragText.classList.remove('hidden');
+    removeImgBtn.classList.add('hidden');
+  }
+
+  document.getElementById('ticketForm').onsubmit = function(e){
+    e.preventDefault();
+    const emailStatus = document.getElementById('emailStatus');
+    emailStatus.textContent = "Ticket submitted! (Demo only, implement your backend.)";
+    emailStatus.style.color = "green";
+    setTimeout(hideModal, 1400);
+  };
+</script>
 </body>
 </html>
