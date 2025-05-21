@@ -26,7 +26,7 @@ body {
 
 /* NAVBAR *//
 .navbar {
-    display: flex;
+    display: flex !important;
     justify-content: space-between;
     align-items: center;
     background: var(--card-bg);
