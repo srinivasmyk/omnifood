@@ -475,3 +475,90 @@ button:hover, .btn:hover {
     display: inline-block;
 }
 @keyframes spin { 100% { transform: rotate(360deg); } }
+
+.help-float-btn {
+      position: fixed;
+      top: 40%;
+      right: 0;
+      z-index: 2000;
+      background: #49d166;
+      color: #fff;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 22px;
+      letter-spacing: 2px;
+      border: none;
+      border-radius: 15px 0 0 15px;
+      padding: 0;
+      width: 60px;
+      height: 200px;
+      writing-mode: vertical-rl;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.16);
+      cursor: pointer;
+      transition: background 0.16s;
+      box-sizing: border-box;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .help-float-btn.hide { display: none !important; }
+    .help-float-btn:hover { background: #38b555; }
+
+    /* Modal style */
+    .modal {
+      display: none;
+      position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.5); z-index: 3000; justify-content: center; align-items: center;
+    }
+    .modal.show { display: flex; }
+    .modal-content {
+      background: #fff; padding: 30px 24px 24px 24px; border-radius: 18px; min-width: 340px;
+      position: relative; max-width: 420px;
+    }
+    .close { position: absolute; top: 12px; right: 18px; font-size: 28px; color: #888; cursor: pointer;}
+    h2 { font-size: 2em; margin-bottom: 15px; }
+    .form-group { margin-bottom: 17px; }
+    label { display: block; margin-bottom: 7px; font-weight:bold;}
+    input[type="text"], textarea {
+      width: 98%; padding: 12px 8px; border: 1.5px solid #ccc;
+      border-radius: 6px; font-size: 16px; margin-bottom: 2px; }
+    textarea{ min-height: 80px;}
+
+    #screenshotArea {
+      border: 2px dashed #aaa;
+      border-radius: 4px; padding: 20px; text-align: center; color: #888;
+      margin-bottom: 10px; display: none; background: #f7f7f7; cursor: pointer;
+    }
+    #imagePreview { display: block; margin: 0 auto 8px auto; max-width: 100%; max-height: 100px; }
+    .hidden { display: none; }
+    .btn {
+      padding: 12px 24px;
+      border: none; border-radius: 8px; background: #ccc; color: #222;
+      font-size: 17px; cursor: pointer; font-weight: bold; margin: 4px 5px 0 0;
+    }
+    .btn.primary {
+      background: #49d166;
+      color: #fff;
+      font-weight: bold;
+      font-size: 17px;
+      letter-spacing: 1px;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 36px;
+      cursor: pointer;
+      margin-left: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+      transition: background 0.13s;
+    }
+    .btn.primary:hover {
+      background: #38b555;
+    }
+    .btn-small { padding: 6px 18px; font-size: 13px; }
+    #emailStatus { margin: 10px 0 0 0; font-size: 15px;}
+
+    @media (max-width: 600px) {
+      .modal-content { min-width: 90vw;}
+      .help-float-btn { height: 110px; width:42px; font-size:15px; }
+    }
