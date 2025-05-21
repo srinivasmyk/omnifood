@@ -99,3 +99,8 @@ function generateRandomId() {
     });
 }
 
+function openHelpModal() {
+  document.getElementById('ticketModal').classList.add('show');
+  document.getElementById('openHelpModalBtn').classList.add('hide');
+}
+
