@@ -153,7 +153,10 @@ console.log(`Viewport size: ${viewportWidth} x ${viewportHeight}`);
         return;
     }
     setLoggedInUser(user);
-     aptrinsic('identify',{'id':user.id, 'email':user.email,'firstName':user.username,'userViewPortSize':`${viewportWidth} x ${viewportHeight}`},{'id':generateRandomEmailAndUsername.company,'name':generateRandomEmailAndUsername.company});
+  
+const companyIdentify = user.email.split("@")[1].split(".")[0];
+console.log(companyIdentify);
+     aptrinsic('identify',{'id':user.id, 'email':user.email,'firstName':user.username,'userViewPortSize':`${viewportWidth} x ${viewportHeight}`},{'id':companyIdentify,'name':companyIdentify});
     document.getElementById("login-form").style.display = "none";
     document.getElementById("login-error").style.display = "none";
     document.getElementById("login-overlay").style.display = "flex";
