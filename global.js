@@ -1,5 +1,4 @@
-///global context--May
-aptrinsic('set', 'globalContext', {"version":"M001", "name":"Foodie", "type":"customer"})
+
 ///remember last user
 document.addEventListener("DOMContentLoaded", function() {
     let lastLogin = localStorage.getItem('FOODIE_LAST_LOGIN');
@@ -22,6 +21,8 @@ var config = {kcAllowedFuncNames : ["openHelpModal"]};
     })(window,document,"https://web-sdk.aptrinsic.com/api/aptrinsic.js","AP-YBQEEASGFCZP-2",config);
 
 ///PX tag////
+///global context--May
+aptrinsic('set', 'globalContext', {"version":"M001", "name":"Foodie", "type":"customer"})
 
 // ----- DEMO USERS, RESTAURANTS, OFFERS ---
 function getUSERS() {
