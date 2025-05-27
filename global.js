@@ -1,4 +1,5 @@
-
+///global context--May
+aptrinsic('set', 'globalContext', {"version":"M001", "name":"Foodie", "type":"customer"})
 ///remember last user
 document.addEventListener("DOMContentLoaded", function() {
     let lastLogin = localStorage.getItem('FOODIE_LAST_LOGIN');
