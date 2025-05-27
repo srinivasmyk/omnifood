@@ -1,4 +1,16 @@
 
+///remember last user
+document.addEventListener("DOMContentLoaded", function() {
+    let lastLogin = localStorage.getItem('FOODIE_LAST_LOGIN');
+    if (lastLogin) {
+        try {
+            lastLogin = JSON.parse(lastLogin);
+            if (lastLogin.email) document.getElementById("login-email").value = lastLogin.email;
+            if (lastLogin.username) document.getElementById("login-username").value = lastLogin.username;
+            if (lastLogin.password) document.getElementById("login-password").value = lastLogin.password;
+        } catch (e) {}
+    }
+});
      ///PX tag////
 var config = {kcAllowedFuncNames : ["openHelpModal"]};
 
