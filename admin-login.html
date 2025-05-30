@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="global.js"></script>
+</head>
+<body>
+<div id="app">
+  <form id="admin-login-form" class="login-container" autocomplete="off">
+    <h2>Admin Login</h2>
+    <div id="admin-login-error" class="login-error"></div>
+    <label for="admin-email">Admin Email</label>
+    <input id="admin-email" type="text" name="login" required placeholder="Enter Admin Email" autofocus>
+    <label for="admin-password">Admin Password</label>
+    <input type="password" id="admin-password" name="password" required placeholder="Password">
+    <button type="submit">Login</button>
+  </form>
+</div>
+<script>
+const ADMIN_USERS = [
+  {email: "admin@foodie.com", password: "admin123", name:"Admin"}
+];
+document.getElementById("admin-login-form").onsubmit = function(e) {
+    e.preventDefault();
+    const email = document.getElementById("admin-email").value.trim();
+    const pass = document.getElementById("admin-password").value;
+    const admin = ADMIN_USERS.find(u => u.email===email && u.password===pass);
+    if (!admin) {
+        document.getElementById("admin-login-error").textContent =
+          "Invalid admin credentials!";
+        return;
+    }
+    // Optionally, flag session as "admin"
+    localStorage.setItem("FOODIE_ADMIN", "1");
+    window.location.href = "admin-config.html";
+};
+</script>
+</body>
+</html>
