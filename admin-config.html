@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Config</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="global.js"></script>
+  <style>
+    .config-section {background:#fff;max-width:500px;margin:30px auto 0;border-radius:14px;padding:32px;box-shadow:0 2px 14px #0001;}
+    .config-section h2 {color:#fc8019;font-weight:bold;}
+    .menu-items-box {margin-bottom:8px;}
+    .menu-item-input {margin-bottom:5px;display:flex;gap:8px;}
+    .menu-item-input input {width:30%;margin-bottom:0;}
+  </style>
+</head>
+<body>
+<div id="app">
+  <div class="config-section">
+    <h2>Add Restaurant</h2>
+    <form id="add-restaurant-form">
+      <label>Name</label>
+      <input type="text" id="rest-name" required placeholder="Restaurant Name"><br>
+      <label>Cuisine</label>
+      <input type="text" id="rest-cuisine" required placeholder="e.g. Pizza, North Indian"><br>
+      <label>Rating</label>
+      <input type="number" id="rest-rating" step="0.1" min="1" max="5" value="4.0" required><br>
+      <label>Image URL</label>
+      <input type="url" id="rest-img" required placeholder="Paste image URL"><br>
+      <div class="menu-items-box">
+        <label>Menu Items</label>
+        <div id="menu-items-list"></div>
+        <div class="menu-item-input">
+          <input type="text" id="menu-name" placeholder="Item Name">
+          <input type="text" id="menu-desc" placeholder="Description">
+          <input type="number" id="menu-price" placeholder="Price">
+          <button type="button" id="add-menu-btn" style="background:#fc8019">Add</button>
+        </div>
+      </div>
+      <button type="submit" style="margin-top:9px">Add Restaurant</button>
+    </form>
+    <div id="config-success" style="color:green;margin-top:10px;font-weight:600"></div>
+  </div>
+</div>
+<script>
+if(localStorage.getItem("FOODIE_ADMIN")!=="1") window.location.href="admin-login.html";
+// Maintain menu items before submission
+let menuItems = [];
+function renderMenuItems() {
+    const el = document.getElementById("menu-items-list");
+    el.innerHTML = menuItems.map((item,i)=>`
+      <div>${item.name} - ₹${item.price} <button onclick="removeMenuItem(${i})" type="button" style="color:#fff;background:#b81f1f;padding:2px 8px;font-size:0.97em;border:none;border-radius:4px;cursor:pointer;">Remove</button></div>
+    `).join('');
+}
+window.removeMenuItem = function(i) {
+    menuItems.splice(i,1); renderMenuItems();
+}
+document.getElementById("add-menu-btn").onclick = function() {
+    const name = document.getElementById("menu-name").value.trim();
+    const desc = document.getElementById("menu-desc").value.trim();
+    const price = Number(document.getElementById("menu-price").value);
+    if(!name || !desc || !price) { alert("Fill item name, desc & price!"); return; }
+    menuItems.push({name, desc, price, id: Date.now()});
+    document.getElementById("menu-name").value = '';
+    document.getElementById("menu-desc").value = '';
+    document.getElementById("menu-price").value = '';
+    renderMenuItems();
+};
+
+document.getElementById("add-restaurant-form").onsubmit = function(e) {
+    e.preventDefault();
+    if(menuItems.length===0) { alert("Add at least one menu item!"); return; }
+    // New restaurant object
+    const rest = {
+        id: Date.now(),
+        name: document.getElementById("rest-name").value.trim(),
+        cuisine: document.getElementById("rest-cuisine").value.trim(),
+        rating: Number(document.getElementById("rest-rating").value),
+        img: document.getElementById("rest-img").value.trim(),
+        menu: menuItems.map(i=>({...i}))
+    };
+    // Save to global/localStorage
+    let adminRests = JSON.parse(localStorage.getItem("FOODIE_ADMIN_RESTS")||"[]");
+    adminRests.push(rest);
+    localStorage.setItem("FOODIE_ADMIN_RESTS", JSON.stringify(adminRests));
+    document.getElementById("config-success").textContent = "Restaurant Added!";
+    this.reset();
+    menuItems = [];
+    renderMenuItems();
+};
+</script>
+</body>
+</html>
