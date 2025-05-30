@@ -9,6 +9,10 @@
 <div id="app"></div>
 <script src="global.js"></script>
 <script>
+  const adminRests = JSON.parse(localStorage.getItem("FOODIE_ADMIN_RESTS")||"[]");
+const allRests = RESTAURANTS.concat(adminRests);
+const restId = Number(params.get("id"));
+const rest = allRests.find(r=>r.id===restId);
 checkAuthRedirect();
 // Read id param from URL (restaurant id)
 const params = new URLSearchParams(location.search);
