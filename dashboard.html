@@ -28,6 +28,29 @@ document.getElementById("app").innerHTML = `
     </div>
   </div>
 `;
+
+  // After loading RESTAURANTS:
+let adminRests = JSON.parse(localStorage.getItem("FOODIE_ADMIN_RESTS")||"[]");
+let allRests = RESTAURANTS.concat(adminRests);
+
+// Use allRests instead of RESTAURANTS everywhere below!
+document.getElementById("app").innerHTML = `
+  ${navbar("dashboard")}
+  <div class="dashboard-container">
+    <div class="section-header"><h2>Available Restaurants</h2></div>
+    <div class="restaurant-list">
+      ${allRests.map(r=>`
+      <div class="restaurant-card" data-id="${r.id}" tabindex="0" onclick="location.href='restaurant.html?id=${r.id}'">
+        <img src="${r.img}" alt="${r.name}">
+        <div class="restaurant-info">
+          <h3>${r.name}</h3>
+          <span class="cuisine">${r.cuisine}</span>
+          <div class="rating"><span class="star">★</span> ${r.rating}</div>
+        </div>
+      </div>`).join('')}
+    </div>
+  </div>
+`;
 </script>
 
   <button id="openHelpModalBtn" class="help-float-btn">HELP</button>
