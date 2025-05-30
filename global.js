@@ -1,4 +1,6 @@
-
+document.getElementById("admin-login-btn").onclick = function() {
+    window.location.href = "admin-login.html";
+};
 ///remember last user
 document.addEventListener("DOMContentLoaded", function() {
     let lastLogin = localStorage.getItem('FOODIE_LAST_LOGIN');
