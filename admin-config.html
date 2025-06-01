@@ -84,7 +84,7 @@ document.getElementById("add-restaurant-form").onsubmit = function(e) {
         img: document.getElementById("rest-img").value.trim(),
         menu: menuItems.map(i=>({...i}))
     };
-    // Save to global/localStorage
+    // /Save to global/localStorage
     let adminRests = JSON.parse(localStorage.getItem("FOODIE_ADMIN_RESTS")||"[]");
     adminRests.push(rest);
     localStorage.setItem("FOODIE_ADMIN_RESTS", JSON.stringify(adminRests));
