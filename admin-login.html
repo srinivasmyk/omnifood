@@ -34,6 +34,10 @@ document.getElementById("admin-login-form").onsubmit = function(e) {
         return;
     }
     // Optionally, flag session as "admin"
+  localStorage.setItem('FOODIE_LAST_ADMIN_LOGIN', JSON.stringify({
+    email: email,
+    password: pass
+}));
     localStorage.setItem("FOODIE_ADMIN", "1");
     window.location.href = "admin-config.html";
 };
