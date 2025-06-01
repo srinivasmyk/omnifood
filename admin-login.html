@@ -17,6 +17,8 @@
     <label for="admin-password">Admin Password</label>
     <input type="password" id="admin-password" name="password" required placeholder="Password">
     <button type="submit">Login</button>
+    <!-- Place this button wherever you want in your HTML -->
+<button type="button" id="random-admin-btn">Random Admin</button>
   </form>
 </div>
 <script>
@@ -48,6 +50,15 @@ const ADMIN_USERS = [
 {"email": "62r0lhz9@dishdash.com", "password": "H1a5pxxvQy", "name": "Rachel"},
 {"email": "ed24utqz@tastify.com", "password": "yd2NvBldvt", "name": "Steve"}
 ];
+
+  // Place this after the ADMIN_USERS array
+document.getElementById("random-admin-btn").onclick = function() {
+    const user = ADMIN_USERS[Math.floor(Math.random() * ADMIN_USERS.length)];
+    document.getElementById("admin-email").value = user.email;
+    document.getElementById("admin-password").value = user.password;
+    // Optional: clear any previous error messages
+    document.getElementById("admin-login-error").textContent = "";
+};
 
   document.addEventListener("DOMContentLoaded", function() {
     let lastAdmin = localStorage.getItem('FOODIE_LAST_ADMIN_LOGIN');
