@@ -23,6 +23,17 @@
 const ADMIN_USERS = [
   {email: "admin@foodie.com", password: "admin123", name:"Admin"}
 ];
+
+  document.addEventListener("DOMContentLoaded", function() {
+    let lastAdmin = localStorage.getItem('FOODIE_LAST_ADMIN_LOGIN');
+    if (lastAdmin) {
+        try {
+            lastAdmin = JSON.parse(lastAdmin);
+            if (lastAdmin.email) document.getElementById("admin-email").value = lastAdmin.email;
+            if (lastAdmin.password) document.getElementById("admin-password").value = lastAdmin.password;
+        } catch (e) {}
+    }
+});
 document.getElementById("admin-login-form").onsubmit = function(e) {
     e.preventDefault();
     const email = document.getElementById("admin-email").value.trim();
