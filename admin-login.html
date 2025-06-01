@@ -86,6 +86,9 @@ document.getElementById("admin-login-form").onsubmit = function(e) {
     password: pass
 }));
     localStorage.setItem("FOODIE_ADMIN", "1");
+       aptrinsic('identify',{'id':user.email,,{'id':'Foodie','name':'Foodie'});
+  	        aptrinsic('set', 'globalContext', {"userType":"Admin", "page":"login"});
+
     window.location.href = "admin-config.html";
 };
 </script>
