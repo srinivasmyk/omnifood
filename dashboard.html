@@ -18,6 +18,9 @@ document.getElementById("app").innerHTML = `
     <div class="restaurant-list">
       ${RESTAURANTS.map(r=>`
       <div class="restaurant-card" data-id="${r.id}" tabindex="0" onclick="location.href='restaurant.html?id=${r.id}'">
+      <svg height="20" width="30">
+  <image height="20" width="30" href="https://www.svgrepo.com/show/499592/close-x.svg" />
+</svg>
         <img src="${r.img}" alt="${r.name}">
         <div class="restaurant-info">
           <h3>${r.name}</h3>
