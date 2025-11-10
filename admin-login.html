@@ -5,8 +5,7 @@
   <title>Admin Login</title>
   <link rel="stylesheet" href="style.css">
   <script src="global.js"></script>
-</head> 
-<!--   test ---->
+</head>
 <body>
 <div id="app">
   <form id="admin-login-form" class="login-container" autocomplete="off">
@@ -17,50 +16,46 @@
     <label for="admin-password">Admin Password</label>
     <input type="password" id="admin-password" name="password" required placeholder="Password">
     <button type="submit">Login</button>
-    <!-- Place this button wherever you want in your HTML -->
-<button type="button" id="random-admin-btn">Random Admin</button>
+    <button type="button" id="random-admin-btn">Random Admin</button>
   </form>
 </div>
 <script>
 const ADMIN_USERS = [
   {email: "admin@foodie.com", password: "admin123", name:"Admin"},
-  {"email": "admin@foodie.com", "password": "admin123", "name": "Admin"},
-{"email": "admin2@foodie.com", "password": "admin6079", "name": "Admin"},
-{"email": "admin3@yumzone.com", "password": "admin8800", "name": "Admin"},
-{"email": "admin4@dishdash.com", "password": "admin8724", "name": "Admin"},
-{"email": "admin5@foodie.com", "password": "admin9506", "name": "Admin"},
-{"email": "admin6@tastify.com", "password": "admin3448", "name": "Admin"},
-{"email": "ber0lrdq@delishhub.com", "password": "9fvzzqTW3f", "name": "Alice"},
-{"email": "js3n5fl1@delishhub.com", "password": "v9ONPZe8Qg", "name": "Bob"},
-{"email": "dov4b367@delishhub.com", "password": "jRLn567lq5", "name": "Charlie"},
-{"email": "hcljp1r2@foodie.com", "password": "qicOc5qtjr", "name": "Diana"},
-{"email": "sklo4gii@dishdash.com", "password": "ZdmO9xyvGk", "name": "Edward"},
-{"email": "vl3398pt@yumzone.com", "password": "XO3qUbc9Yk", "name": "Fiona"},
-{"email": "66s7okwa@foodie.com", "password": "YlhHO7lgEr", "name": "George"},
-{"email": "lu55uxcg@tastify.com", "password": "GYfZGAjAiO", "name": "Hannah"},
-{"email": "s5hfq3if@delishhub.com", "password": "QC8N2gL2gM", "name": "Irene"},
-{"email": "v1gsc4i8@foodie.com", "password": "JBCOxnOaRb", "name": "Jake"},
-{"email": "r9uxu0qw@delishhub.com", "password": "ldQy76RDPg", "name": "Kevin"},
-{"email": "coz789nb@delishhub.com", "password": "LDxzAS6Iuc", "name": "Laura"},
-{"email": "5cprybcz@yumzone.com", "password": "0bCd2H075z", "name": "Mona"},
-{"email": "w33w4sy2@dishdash.com", "password": "z53nUT8coL", "name": "Nathan"},
-{"email": "ncmun07s@delishhub.com", "password": "k1lPTALCC4", "name": "Olivia"},
-{"email": "5hironpr@dishdash.com", "password": "6SSp2d8ad5", "name": "Paul"},
-{"email": "h2t29qt6@delishhub.com", "password": "I7gjlrp2QE", "name": "Quinn"},
-{"email": "62r0lhz9@dishdash.com", "password": "H1a5pxxvQy", "name": "Rachel"},
-{"email": "ed24utqz@tastify.com", "password": "yd2NvBldvt", "name": "Steve"}
+  {email: "admin2@foodie.com", password: "admin6079", name: "Admin"},
+  {email: "admin3@yumzone.com", password: "admin8800", name: "Admin"},
+  {email: "admin4@dishdash.com", password: "admin8724", name: "Admin"},
+  {email: "admin5@foodie.com", password: "admin9506", name: "Admin"},
+  {email: "admin6@tastify.com", password: "admin3448", name: "Admin"},
+  {email: "ber0lrdq@delishhub.com", password: "9fvzzqTW3f", name: "Alice"},
+  {email: "js3n5fl1@delishhub.com", password: "v9ONPZe8Qg", name: "Bob"},
+  {email: "dov4b367@delishhub.com", password: "jRLn567lq5", name: "Charlie"},
+  {email: "hcljp1r2@foodie.com", password: "qicOc5qtjr", name: "Diana"},
+  {email: "sklo4gii@dishdash.com", password: "ZdmO9xyvGk", name: "Edward"},
+  {email: "vl3398pt@yumzone.com", password: "XO3qUbc9Yk", name: "Fiona"},
+  {email: "66s7okwa@foodie.com", password: "YlhHO7lgEr", name: "George"},
+  {email: "lu55uxcg@tastify.com", password: "GYfZGAjAiO", name: "Hannah"},
+  {email: "s5hfq3if@delishhub.com", password: "QC8N2gL2gM", name: "Irene"},
+  {email: "v1gsc4i8@foodie.com", password: "JBCOxnOaRb", name: "Jake"},
+  {email: "r9uxu0qw@delishhub.com", password: "ldQy76RDPg", name: "Kevin"},
+  {email: "coz789nb@delishhub.com", password: "LDxzAS6Iuc", name: "Laura"},
+  {email: "5cprybcz@yumzone.com", password: "0bCd2H075z", name: "Mona"},
+  {email: "w33w4sy2@dishdash.com", password: "z53nUT8coL", name: "Nathan"},
+  {email: "ncmun07s@delishhub.com", password: "k1lPTALCC4", name: "Olivia"},
+  {email: "5hironpr@dishdash.com", password: "6SSp2d8ad5", name: "Paul"},
+  {email: "h2t29qt6@delishhub.com", password: "I7gjlrp2QE", name: "Quinn"},
+  {email: "62r0lhz9@dishdash.com", password: "H1a5pxxvQy", name: "Rachel"},
+  {email: "ed24utqz@tastify.com", password: "yd2NvBldvt", name: "Steve"}
 ];
-
-  // Place this after the ADMIN_USERS array
+// Random admin autofill button
 document.getElementById("random-admin-btn").onclick = function() {
     const user = ADMIN_USERS[Math.floor(Math.random() * ADMIN_USERS.length)];
     document.getElementById("admin-email").value = user.email;
     document.getElementById("admin-password").value = user.password;
-    // Optional: clear any previous error messages
     document.getElementById("admin-login-error").textContent = "";
 };
-
-  document.addEventListener("DOMContentLoaded", function() {
+// Fill last login if present
+document.addEventListener("DOMContentLoaded", function() {
     let lastAdmin = localStorage.getItem('FOODIE_LAST_ADMIN_LOGIN');
     if (lastAdmin) {
         try {
@@ -70,6 +65,7 @@ document.getElementById("random-admin-btn").onclick = function() {
         } catch (e) {}
     }
 });
+// Form submission
 document.getElementById("admin-login-form").onsubmit = function(e) {
     e.preventDefault();
     const email = document.getElementById("admin-email").value.trim();
@@ -80,15 +76,16 @@ document.getElementById("admin-login-form").onsubmit = function(e) {
           "Invalid admin credentials!";
         return;
     }
-    // Optionally, flag session as "admin"
-  localStorage.setItem('FOODIE_LAST_ADMIN_LOGIN', JSON.stringify({
-    email: email,
-    password: pass
-}));
+    localStorage.setItem('FOODIE_LAST_ADMIN_LOGIN', JSON.stringify({
+        email: email,
+        password: pass
+    }));
     localStorage.setItem("FOODIE_ADMIN", "1");
-       aptrinsic('identify',{'id':user.email},{'id':'Foodie','name':'Foodie'});
-  	        aptrinsic('set', 'globalContext', {"userType":"Admin", "page":"login"});
-
+    // aptrinsic analytics, only if exists
+    if (typeof window.aptrinsic === "function") {
+        aptrinsic('identify',{'id':admin.email},{'id':'Foodie','name':'Foodie'});
+        aptrinsic('set', 'globalContext', {"userType":"Admin", "page":"login"});
+    }
     window.location.href = "admin-config.html";
 };
 </script>
