@@ -120,6 +120,6 @@ function openHelpModal() {
   document.getElementById('openHelpModalBtn').classList.add('hide');
 }
 
-document.getElementById("admin-login-btn").onclick = function() {
-    window.location.href = "admin-login.html";
-};
+// document.getElementById("admin-login-btn").onclick = function() {
+//     window.location.href = "admin-login.html";
+// };
