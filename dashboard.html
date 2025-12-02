@@ -12,7 +12,12 @@
   if (localStorage.getItem("FOODIE_ADMIN") == "1") {
     aptrinsic('set', 'globalContext', {"userType": "Admin"});
 
-    }</script>
+    }
+   if (localStorage.getItem("FOODIE_ADMIN") == "0") {
+    aptrinsic('set', 'globalContext', {"userType": "Customer"});
+
+    }
+  </script>
 <script>
 checkAuthRedirect();
 const user = getLoggedInUser();
