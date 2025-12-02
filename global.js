@@ -85,9 +85,15 @@ function formatDate(millis) {
   return d.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
 }
 function checkAuthRedirect() {
-  // If not on login.html and not logged in, redirect
-  if (!getLoggedInUser() && !location.pathname.endsWith("/login.html")) {
-    location.href = "login.html";
+  // On dashboard.html, check admin login. On other pages, check user login.
+  if (location.pathname.endsWith('dashboard.html') || location.pathname.endsWith('/dashboard.html')) {
+    if (localStorage.getItem("FOODIE_ADMIN") !== "1") {
+      location.href = "login.html";
+    }
+  } else {
+    if (!getLoggedInUser() && !location.pathname.endsWith("/login.html")) {
+      location.href = "login.html";
+    }
   }
 }
 function logout() {
