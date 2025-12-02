@@ -85,6 +85,11 @@ document.getElementById("admin-login-form").onsubmit = function(e) {
     if (typeof window.aptrinsic === "function") {
         aptrinsic('identify',{'id':admin.email},{'id':'Foodie','name':'Foodie'});
         aptrinsic('set', 'globalContext', {"userType":"Admin", "page":"login"});
+      localStorage.setItem('FOODIE_LAST_LOGIN', JSON.stringify({
+    email: email,
+    username: admin,
+    password: pass
+}));
     }
     window.location.href = "dashboard.html";
 };
